@@ -15,6 +15,10 @@
 		330881C31E68913400D1E19C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 330881C11E68913400D1E19C /* LaunchScreen.storyboard */; };
 		330881CE1E68913400D1E19C /* LeagueOfStatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330881CD1E68913400D1E19C /* LeagueOfStatsTests.swift */; };
 		330881D91E68913400D1E19C /* LeagueOfStatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330881D81E68913400D1E19C /* LeagueOfStatsUITests.swift */; };
+		330881E71E6891D200D1E19C /* signup_logo2_clean.png in Resources */ = {isa = PBXBuildFile; fileRef = 330881E61E6891D200D1E19C /* signup_logo2_clean.png */; };
+		3361C9831E6F3D9E00445149 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3361C9821E6F3D9E00445149 /* TableViewController.swift */; };
+		3361C9851E6F3DD400445149 /* InfoPartida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3361C9841E6F3DD400445149 /* InfoPartida.swift */; };
+		3361C9871E6F40D500445149 /* Partida.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3361C9861E6F40D500445149 /* Partida.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		330881D41E68913400D1E19C /* LeagueOfStatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeagueOfStatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		330881D81E68913400D1E19C /* LeagueOfStatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueOfStatsUITests.swift; sourceTree = "<group>"; };
 		330881DA1E68913400D1E19C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		330881E61E6891D200D1E19C /* signup_logo2_clean.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup_logo2_clean.png; sourceTree = "<group>"; };
+		3361C9821E6F3D9E00445149 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		3361C9841E6F3DD400445149 /* InfoPartida.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPartida.swift; sourceTree = "<group>"; };
+		3361C9861E6F40D500445149 /* Partida.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partida.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +110,14 @@
 				330881B51E68913400D1E19C /* AppDelegate.swift */,
 				330881B71E68913400D1E19C /* ViewController.swift */,
 				330881B91E68913400D1E19C /* Main.storyboard */,
+				330881E61E6891D200D1E19C /* signup_logo2_clean.png */,
 				330881BF1E68913400D1E19C /* Assets.xcassets */,
 				330881C11E68913400D1E19C /* LaunchScreen.storyboard */,
 				330881C41E68913400D1E19C /* Info.plist */,
 				330881BC1E68913400D1E19C /* LeagueOfStats.xcdatamodeld */,
+				3361C9821E6F3D9E00445149 /* TableViewController.swift */,
+				3361C9841E6F3DD400445149 /* InfoPartida.swift */,
+				3361C9861E6F40D500445149 /* Partida.swift */,
 			);
 			path = LeagueOfStats;
 			sourceTree = "<group>";
@@ -238,6 +250,7 @@
 				330881C31E68913400D1E19C /* LaunchScreen.storyboard in Resources */,
 				330881C01E68913400D1E19C /* Assets.xcassets in Resources */,
 				330881BB1E68913400D1E19C /* Main.storyboard in Resources */,
+				330881E71E6891D200D1E19C /* signup_logo2_clean.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,8 +276,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				330881B81E68913400D1E19C /* ViewController.swift in Sources */,
+				3361C9851E6F3DD400445149 /* InfoPartida.swift in Sources */,
 				330881B61E68913400D1E19C /* AppDelegate.swift in Sources */,
 				330881BE1E68913400D1E19C /* LeagueOfStats.xcdatamodeld in Sources */,
+				3361C9831E6F3D9E00445149 /* TableViewController.swift in Sources */,
+				3361C9871E6F40D500445149 /* Partida.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +525,7 @@
 				330881DF1E68913400D1E19C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		330881E01E68913400D1E19C /* Build configuration list for PBXNativeTarget "LeagueOfStatsTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +534,7 @@
 				330881E21E68913400D1E19C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		330881E31E68913400D1E19C /* Build configuration list for PBXNativeTarget "LeagueOfStatsUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +543,7 @@
 				330881E51E68913400D1E19C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
