@@ -19,9 +19,8 @@ class ViewController: UIViewController, URLSessionDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
-    @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBAction func entrar(_ sender: Any) {
+        
         var invocador  = textoInvocador.text!.lowercased()
         var letras = Array(invocador.characters)
         var volcado = [Character]()
@@ -46,18 +45,7 @@ class ViewController: UIViewController, URLSessionDelegate {
     func downloadPlayerId(){
         let url = URL(string: "https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/" + palabra + "?api_key=RGAPI-3a39327e-3d10-42c6-87b6-eb4ef96168a3")
         let request = URLRequest(url: url!)
-//        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .actionSheet)
-//        
-//        alert.view.tintColor = UIColor.black
-//        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-//        loadingIndicator.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
-//        loadingIndicator.color = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-//        loadingIndicator.hidesWhenStopped = true
-//        loadingIndicator.startAnimating();
-//        
-//        alert.view.addSubview(loadingIndicator)
-//        present(alert, animated: true, completion: nil)
-        
+
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
             let httpResponse = response as! HTTPURLResponse
@@ -74,14 +62,12 @@ class ViewController: UIViewController, URLSessionDelegate {
                 } catch let error as NSError {
                     print(error)
                 }
-               // alert.dismiss(animated: false, completion: nil)
             }else if(statusCode == 404){
                 print("No existe el usuario")
             }else{
                 print("Error desconocido")
             }
         }).resume()
-       // alert.dismiss(animated: true, completion: nil)
         
     }
     func downloadPlayerInfo(){
@@ -97,9 +83,31 @@ class ViewController: UIViewController, URLSessionDelegate {
                     let allGames = json["games"] as! [[String:Any]]
                     let game = allGames[0]
                     let gameMode = game["gameMode"]!
-                    // playerPosition TOP(1), MIDDLE(2), JUNGLE(3), BOT(4)
-                    // playerRole DUO(1), SUPPORT(2), CARRY(3), SOLO(4)
+                    let stats = game["stats"] as! [String: Any]
+                    var playerPosition = stats["playerPosition"]!
+                    
+                    if(playerPosition as! Int == 1){
+                        playerPosition = "TOP"
+                    }else if(playerPosition as! Int == 2){
+                        playerPosition = "MIDDLE"
+                    }else if(playerPosition as! Int == 3){
+                        playerPosition = "JUNGLE"
+                    }else if(playerPosition as! Int == 4){
+                        playerPosition = "BOT"
+                        let playerRole = game["playerRole"]!
+                        if(playerRole as! Int == 2){
+                            playerPosition = "SUPPORT"
+                        }
+                        if(playerRole as! Int == 3){
+                            playerPosition = "CARRY"
+                        }
+                    }
+                    let win = stats["win"]!
+                    let championId = game["championId"]!
                     print(gameMode)
+                    print(playerPosition)
+                    print(win)
+                    print(championId)
                     
                 } catch let error as NSError {
                     print(error)
