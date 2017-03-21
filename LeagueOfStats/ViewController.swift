@@ -81,34 +81,108 @@ class ViewController: UIViewController, URLSessionDelegate {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data) as! [String:Any]
                     let allGames = json["games"] as! [[String:Any]]
-                    let game = allGames[0]
-                    let gameMode = game["gameMode"]!
+                    for i in 0...allGames.count-1 {
+                    let game = allGames[i]
+                        var gameMode : String
+                        if (game["gameMode"] != nil){
+                            gameMode = game["gameMode"]! as! String
+                        }else{
+                            gameMode = "Null"
+                        }
                     let stats = game["stats"] as! [String: Any]
-                    var playerPosition = stats["playerPosition"]!
+                        var playerPosition : Any
+                        if(stats["playerPosition"] != nil){
+                            playerPosition = stats["playerPosition"]!
+                            if(playerPosition as! Int == 1){
+                                playerPosition = "TOP"
+                            }else if(playerPosition as! Int == 2){
+                                playerPosition = "MIDDLE"
+                            }else if(playerPosition as! Int == 3){
+                                playerPosition = "JUNGLE"
+                            }else if(playerPosition as! Int == 4){
+                                playerPosition = "BOT"
+                                let playerRole = stats["playerRole"]!
+                                if(playerRole as! Int == 2){
+                                    playerPosition = "SUPPORT"
+                                }
+                                if(playerRole as! Int == 3){
+                                    playerPosition = "CARRY"
+                                }
+                            }
+                        }else{
+                            playerPosition = "NUL"
+                        }
+                        var win : Any
+                        if((stats["win"]) != nil){
+                            win = stats["win"]!
+                        }else{
+                            win = "NUL"
+                        }
+                        var championId : Any
+                        if((game["championId"]) != nil){
+                            championId = game["championId"]!
+                        }else{
+                            championId = 1
+                        }
+                        var gameId : Any
+                        if((game["gameId"]) != nil){
+                            gameId = game["gameId"]!
+                        }else{
+                            gameId = 1
+                        }
+                        var minionsKilled : Any
+                        if((stats["minionsKilled"]) != nil){
+                            minionsKilled = stats["minionsKilled"]!
+                        }else{
+                            minionsKilled = 2
+                        }
+                        var goldEarned : Any
+                        if((stats["goldEarned"]) != nil){
+                            goldEarned = stats["goldEarned"]!
+                        }else{
+                            goldEarned = 1
+                        }
+                        var wardPlaced : Any
+                        if((stats["wardPlaced"]) != nil){
+                            wardPlaced = stats["wardPlaced"]!
+                        }else{
+                            wardPlaced = 1
+                        }
+                        var championsKilled : Any
+                        if((stats["championsKilled"]) != nil){
+                            championsKilled = stats["championsKilled"]!
+                        }else{
+                            championsKilled = 1
+                        }
+                        var assists : Any
+                        if((stats["assists"]) != nil){
+                            assists = stats["assists"]!
+                        }else{
+                            assists = 1
+                        }
+                        var numDeaths : Double
+                        if((stats["numDeaths"]) != nil){
+                            numDeaths = stats["numDeaths"]! as! Double
+                        }else{
+                            numDeaths = 1
+                        }
+                        let kda : Double = ((championsKilled  as! Double) + (assists  as! Double)) / (numDeaths)
                     
-                    if(playerPosition as! Int == 1){
-                        playerPosition = "TOP"
-                    }else if(playerPosition as! Int == 2){
-                        playerPosition = "MIDDLE"
-                    }else if(playerPosition as! Int == 3){
-                        playerPosition = "JUNGLE"
-                    }else if(playerPosition as! Int == 4){
-                        playerPosition = "BOT"
-                        let playerRole = game["playerRole"]!
-                        if(playerRole as! Int == 2){
-                            playerPosition = "SUPPORT"
-                        }
-                        if(playerRole as! Int == 3){
-                            playerPosition = "CARRY"
-                        }
+                    var partida : Partida = Partida ();
+                    partida.win = win as! Bool
+                    partida.champ = championId as! Int
+                    partida.type = gameMode 
+                    partida.id = gameId as! CLong
+                    partida.lane = playerPosition as! String
+                    partida.minions = minionsKilled as! Int
+                    partida.gold = goldEarned as! Int
+                    partida.wards = wardPlaced as! Int
+                    partida.kda = kda
+                    partida.kills = championsKilled as! Int
+                    partida.death = Int(numDeaths)
+                    partida.assists = assists as! Int
+                    print(partida)
                     }
-                    let win = stats["win"]!
-                    let championId = game["championId"]!
-                    print(gameMode)
-                    print(playerPosition)
-                    print(win)
-                    print(championId)
-                    
                 } catch let error as NSError {
                     print(error)
                 }
