@@ -152,23 +152,45 @@ class ViewController: UIViewController, URLSessionDelegate {
                         if((stats["championsKilled"]) != nil){
                             championsKilled = stats["championsKilled"]!
                         }else{
-                            championsKilled = 1
+                            championsKilled = 0
                         }
                         var assists : Any
                         if((stats["assists"]) != nil){
                             assists = stats["assists"]!
                         }else{
-                            assists = 1
+                            assists = 0
                         }
-                        var numDeaths : Double
+                        var numDeaths : Any
                         if((stats["numDeaths"]) != nil){
-                            numDeaths = stats["numDeaths"]! as! Double
+                            numDeaths = stats["numDeaths"]!
                         }else{
-                            numDeaths = 1
+                            numDeaths = 0
                         }
-                        let kda : Double = ((championsKilled  as! Double) + (assists  as! Double)) / (numDeaths)
-                    
+                        var kda : Double
+                        if (((assists as! Int) == 0) || ((championsKilled as! Int) == 0) || ((numDeaths as! Int) == 0)){
+                            if(((assists as! Int) == 0)){
+                                assists = 0.0
+                            }
+                            if(((championsKilled as! Int) == 0)){
+                                championsKilled = 0.0
+                            }
+                            if(((numDeaths as! Int) == 0)){
+                                numDeaths = 0.0
+                            }
+                        }
+                        
+                            kda = ((championsKilled  as! Double) + (assists  as! Double)) / (numDeaths as! Double)
+                        if(((assists as! Double) == 0)){
+                            assists = 0 as! Int
+                        }
+                        if(((championsKilled as! Double) == 0)){
+                            championsKilled = 0 as! Int
+                        }
+                        if(((numDeaths as! Double) == 0)){
+                            numDeaths = 0 as! Int
+                        }
                     var partida : Partida = Partida ();
+                        
                     partida.win = win as! Bool
                     partida.champ = championId as! Int
                     partida.type = gameMode 
@@ -179,9 +201,12 @@ class ViewController: UIViewController, URLSessionDelegate {
                     partida.wards = wardPlaced as! Int
                     partida.kda = kda
                     partida.kills = championsKilled as! Int
-                    partida.death = Int(numDeaths)
+                    partida.death = numDeaths as! Int
                     partida.assists = assists as! Int
                     print(partida)
+                        print(championsKilled)
+                        print(assists)
+                        print(numDeaths)
                     }
                 } catch let error as NSError {
                     print(error)
