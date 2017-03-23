@@ -9,7 +9,16 @@
 import UIKit
 
 class InfoPartida: UIViewController {
-
+    @IBOutlet weak var creepScore: UILabel!
+    @IBOutlet weak var gold: UILabel!
+    @IBOutlet weak var wards: UILabel!
+    @IBOutlet weak var kdaRatio: UILabel!
+    @IBOutlet weak var killsAssistsDeath: UILabel!
+    var idRow = 0
+    var nameChamp = ""
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

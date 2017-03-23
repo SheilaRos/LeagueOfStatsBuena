@@ -29,23 +29,33 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return partidas.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! TableViewCell
+        if partidas[indexPath.row].win {
+            cell.win.text = "Win"
+        }else{
+            cell.win.text = "Default"
+        }
+        cell.lane.text = partidas[indexPath.row].lane + " lane"
+        cell.type.text = partidas[indexPath.row].type
+        let imagenes = String(partidas[indexPath.row].champ) + ".png"
+        cell.champImage.image = UIImage (named: imagenes)
+        cell.champ.text = String (partidas[indexPath.row].champ) + "Id"
         return cell
     }
-    */
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

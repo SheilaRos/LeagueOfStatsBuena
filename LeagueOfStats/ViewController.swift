@@ -8,6 +8,7 @@
 
 import UIKit
 
+var partidas = [Partida]()
 class ViewController: UIViewController, URLSessionDelegate {
     
     @IBOutlet weak var textoInvocador: UITextField!
@@ -20,7 +21,9 @@ class ViewController: UIViewController, URLSessionDelegate {
         // Do any additional setup after loading the view, typically from a nib.
     }
     @IBAction func entrar(_ sender: Any) {
-        
+        if partidas.count>0{
+            partidas = [Partida]()
+        }
         var invocador  = textoInvocador.text!.lowercased()
         var letras = Array(invocador.characters)
         var volcado = [Character]()
@@ -203,10 +206,7 @@ class ViewController: UIViewController, URLSessionDelegate {
                     partida.kills = championsKilled as! Int
                     partida.death = numDeaths as! Int
                     partida.assists = assists as! Int
-                    print(partida)
-                        print(championsKilled)
-                        print(assists)
-                        print(numDeaths)
+                    partidas.append(partida)
                     }
                 } catch let error as NSError {
                     print(error)
