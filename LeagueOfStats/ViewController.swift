@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+var champNames = [Personaje]()
 var partidas = [Partida]()
 class ViewController: UIViewController, URLSessionDelegate {
     
@@ -19,6 +19,7 @@ class ViewController: UIViewController, URLSessionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        downloadChampNames()
     }
     @IBAction func entrar(_ sender: Any) {
         if partidas.count>0{
@@ -45,10 +46,11 @@ class ViewController: UIViewController, URLSessionDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         self.show(TableViewController() as UIViewController, sender: self)
     }
+    
     func downloadPlayerId(){
         let url = URL(string: "https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/" + palabra + "?api_key=RGAPI-3a39327e-3d10-42c6-87b6-eb4ef96168a3")
         let request = URLRequest(url: url!)
-
+        
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
             let httpResponse = response as! HTTPURLResponse
@@ -212,6 +214,41 @@ class ViewController: UIViewController, URLSessionDelegate {
                     print(error)
                 }
             
+            }else if(statusCode == 404){
+                print("No existe el usuario")
+            }else{
+                print("Error desconocido")
+            }
+        }).resume()
+    }
+    func downloadChampNames(){
+        let url = URL(string: "https://global.api.riotgames.com/api/lol/static-data/EUW/v1.2/champion?dataById=true&locale=es_ES&api_key=RGAPI-3a39327e-3d10-42c6-87b6-eb4ef96168a3")
+        let request = URLRequest(url: url!)
+        
+        URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
+            guard let data = data, error == nil else { return }
+            let httpResponse = response as! HTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            if (statusCode == 200){
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data) as! [String:Any]
+                    let data = json["data"] as! [String:Any]
+                    
+                    for i in 0...data.count-1 {
+                        if data[String(i)] != nil{
+                        let info = data[String(i)] as! [String:Any]
+                        let champName = info["name"]!
+                        let id = info["id"]!
+                            var personaje : Personaje = Personaje();
+                            personaje.champName = champName as! String
+                            personaje.id = id as! Int
+                            champNames.append(personaje)
+                            print(personaje)
+                        }
+                    }
+                } catch let error as NSError {
+                    print(error)
+                }
             }else if(statusCode == 404){
                 print("No existe el usuario")
             }else{
