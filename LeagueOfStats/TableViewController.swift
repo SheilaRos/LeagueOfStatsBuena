@@ -42,20 +42,36 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! TableViewCell
         if partidas[indexPath.row].win {
             cell.win.text = "Win"
+            cell.win.textColor = UIColor(red:0.08, green:0.71,blue:0.08,alpha:1.0)
         }else{
             cell.win.text = "Default"
+            cell.win.textColor = UIColor.red
         }
         cell.lane.text = partidas[indexPath.row].lane + " lane"
         cell.type.text = partidas[indexPath.row].type
         let imagenes = String(partidas[indexPath.row].champ) + ".png"
         cell.champImage.image = UIImage (named: imagenes)
-        cell.champ.text = String (partidas[indexPath.row].champ) + "Id"
+        for i in 0...champNames.count-1 {
+            if champNames[i].id == partidas[indexPath.row].champ {
+                cell.champ.text = champNames[i].champName
+            }
+        }
+        if (indexPath.row % 2) == 0{
+            cell.backgroundColor = tableView.backgroundColor
+        }else{
+            cell.backgroundColor = UIColor(red:0.93, green:0.93,blue:0.93,alpha:1.0)
+        }
+        
         return cell
     }
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var detalle: InfoPartida = segue.destination as! InfoPartida
+        detalle.idRow = (tableView.indexPathForSelectedRow?.row)!
+    }
 
     /*
     // Override to support conditional editing of the table view.

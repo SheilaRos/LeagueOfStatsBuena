@@ -7,19 +7,34 @@
 //
 
 import UIKit
+import CoreData
 var champNames = [Personaje]()
 var partidas = [Partida]()
+var user : NSManagedObjectContext? = nil
 class ViewController: UIViewController, URLSessionDelegate {
-    
     @IBOutlet weak var textoInvocador: UITextField!
     var palabra = ""
     var id = ""
-    
+
+    @IBOutlet weak var boton: UIButton!
+    @IBOutlet weak var tituloNombre: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         downloadChampNames()
+        let appDel = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        if user == nil{
+            boton.alpha = 1
+            tituloNombre.alpha = 1
+            textoInvocador.alpha = 1
+        }else{
+          boton.alpha = 0
+          tituloNombre.alpha = 0
+          textoInvocador.alpha = 0
+          textoInvocador.value(forKey: (user?.name)!)
+          downloadPlayerId()
+        }
+
     }
     @IBAction func entrar(_ sender: Any) {
         if partidas.count>0{
@@ -183,8 +198,11 @@ class ViewController: UIViewController, URLSessionDelegate {
                                 numDeaths = 0.0
                             }
                         }
-                        
+                        if (numDeaths as! Double) == 0.00{
+                            kda = ((championsKilled  as! Double) + (assists  as! Double))
+                        }else{
                             kda = ((championsKilled  as! Double) + (assists  as! Double)) / (numDeaths as! Double)
+                        }
                         if(((assists as! Double) == 0)){
                             assists = 0 as! Int
                         }
