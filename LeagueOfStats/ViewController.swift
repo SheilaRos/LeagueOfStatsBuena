@@ -59,6 +59,7 @@ class ViewController: UIViewController, URLSessionDelegate {
             palabra = String(volcado)
             userF.set(palabra, forKey: "key")
             userF.synchronize()
+            downloadPlayerId()
         }
     }
     override func didReceiveMemoryWarning() {
@@ -270,6 +271,14 @@ class ViewController: UIViewController, URLSessionDelegate {
                     }
                 } catch let error as NSError {
                     print(error)
+                }
+                DispatchQueue.main.async {
+                    let tableViewController:TableViewController = self.storyboard?.instantiateViewController(withIdentifier: "resumen") as! TableViewController
+                    self.boton.alpha = 1
+                    self.tituloNombre.alpha = 1
+                    self.textoInvocador.alpha = 1
+
+                    self.show(tableViewController, sender: self)
                 }
             }else if(statusCode == 404){
                 print("No existe el usuario")
