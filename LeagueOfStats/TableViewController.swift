@@ -12,7 +12,6 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -56,12 +55,7 @@ class TableViewController: UITableViewController {
                 cell.champ.text = champNames[i].champName
             }
         }
-        if (indexPath.row % 2) == 0{
-            cell.backgroundColor = tableView.backgroundColor
-        }else{
-            cell.backgroundColor = UIColor(red:0.93, green:0.93,blue:0.93,alpha:1.0)
-        }
-        
+        cell.backgroundColor = UIColor.white
         return cell
     }
     override func viewDidAppear(_ animated: Bool) {

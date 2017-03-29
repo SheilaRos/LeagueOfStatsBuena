@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import CoreData
+
 var champNames = [Personaje]()
 var partidas = [Partida]()
-var user : NSManagedObjectContext? = nil
+var userF = UserDefaults()
 class ViewController: UIViewController, URLSessionDelegate {
     @IBOutlet weak var textoInvocador: UITextField!
     var palabra = ""
@@ -22,20 +22,26 @@ class ViewController: UIViewController, URLSessionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         downloadChampNames()
-        let appDel = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        if user == nil{
+       
+        if userF.object(forKey: "key") == nil{
             boton.alpha = 1
             tituloNombre.alpha = 1
             textoInvocador.alpha = 1
         }else{
+         if partidas.count>0{
+            partidas = [Partida]()
+          }
           boton.alpha = 0
           tituloNombre.alpha = 0
           textoInvocador.alpha = 0
-          textoInvocador.value(forKey: (user?.name)!)
+          
+          palabra = userF.object(forKey: "key") as! String
           downloadPlayerId()
         }
 
     }
+
+    
     @IBAction func entrar(_ sender: Any) {
         if partidas.count>0{
             partidas = [Partida]()
@@ -51,18 +57,16 @@ class ViewController: UIViewController, URLSessionDelegate {
                 }
             }
             palabra = String(volcado)
-            downloadPlayerId()
+            userF.set(palabra, forKey: "key")
+            userF.synchronize()
         }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
-        self.show(TableViewController() as UIViewController, sender: self)
-    }
     
-    func downloadPlayerId(){
+    func  downloadPlayerId() {
         let url = URL(string: "https://euw.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/" + palabra + "?api_key=RGAPI-3a39327e-3d10-42c6-87b6-eb4ef96168a3")
         let request = URLRequest(url: url!)
         
@@ -252,7 +256,7 @@ class ViewController: UIViewController, URLSessionDelegate {
                     let json = try JSONSerialization.jsonObject(with: data) as! [String:Any]
                     let data = json["data"] as! [String:Any]
                     
-                    for i in 0...data.count-1 {
+                    for i in 0...500 {
                         if data[String(i)] != nil{
                         let info = data[String(i)] as! [String:Any]
                         let champName = info["name"]!
