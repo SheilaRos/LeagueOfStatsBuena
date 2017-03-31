@@ -155,6 +155,8 @@
 		339694D91E78780500476EFC /* 115.png in Resources */ = {isa = PBXBuildFile; fileRef = 339694531E78780500476EFC /* 115.png */; };
 		339694DA1E78780500476EFC /* 26.png in Resources */ = {isa = PBXBuildFile; fileRef = 339694541E78780500476EFC /* 26.png */; };
 		339694DB1E78780500476EFC /* 143.png in Resources */ = {isa = PBXBuildFile; fileRef = 339694551E78780500476EFC /* 143.png */; };
+		339A975E1E8EC2F8007A5236 /* imagedata.png in Resources */ = {isa = PBXBuildFile; fileRef = 339A975D1E8EC2F8007A5236 /* imagedata.png */; };
+		339A97601E8EC6F8007A5236 /* celda.png in Resources */ = {isa = PBXBuildFile; fileRef = 339A975F1E8EC6F8007A5236 /* celda.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,6 +331,8 @@
 		339694531E78780500476EFC /* 115.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 115.png; sourceTree = "<group>"; };
 		339694541E78780500476EFC /* 26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 26.png; sourceTree = "<group>"; };
 		339694551E78780500476EFC /* 143.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 143.png; sourceTree = "<group>"; };
+		339A975D1E8EC2F8007A5236 /* imagedata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imagedata.png; sourceTree = "<group>"; };
+		339A975F1E8EC6F8007A5236 /* celda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = celda.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +422,8 @@
 		339693CF1E78740B00476EFC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				339A975F1E8EC6F8007A5236 /* celda.png */,
+				339A975D1E8EC2F8007A5236 /* imagedata.png */,
 				339693D01E78780500476EFC /* 266.png */,
 				339693D11E78780500476EFC /* 103.png */,
 				339693D21E78780500476EFC /* 84.png */,
@@ -684,6 +690,7 @@
 				3396945E1E78780500476EFC /* 136.png in Resources */,
 				339694871E78780500476EFC /* 30.png in Resources */,
 				339694D71E78780500476EFC /* 154.png in Resources */,
+				339A97601E8EC6F8007A5236 /* celda.png in Resources */,
 				339694921E78780500476EFC /* 89.png in Resources */,
 				3396946F1E78780500476EFC /* 28.png in Resources */,
 				339694BB1E78780500476EFC /* 134.png in Resources */,
@@ -774,6 +781,7 @@
 				339694D41E78780500476EFC /* 5.png in Resources */,
 				330881E71E6891D200D1E19C /* signup_logo2_clean.png in Resources */,
 				339694B41E78780500476EFC /* 27.png in Resources */,
+				339A975E1E8EC2F8007A5236 /* imagedata.png in Resources */,
 				339694C11E78780500476EFC /* 412.png in Resources */,
 				339694BA1E78780500476EFC /* 50.png in Resources */,
 				339694B91E78780500476EFC /* 16.png in Resources */,

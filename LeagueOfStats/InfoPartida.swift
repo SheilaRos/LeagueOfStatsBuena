@@ -33,7 +33,7 @@ class InfoPartida: UIViewController {
         wards.text = wards.text! + " " + String(partidas[idRow].wards)
         kdaRatio.text = kdaRatio.text! + " " + String(partidas[idRow].kda)
         print(partidas[idRow].kda)
-        killsAssistsDeath.text = String(partidas[idRow].kills) + " Kills - " + String(partidas[idRow].assists) + " Assists - " + String(partidas[idRow].death) + " Death"
+        killsAssistsDeath.text = String(partidas[idRow].kills) + " Kills - " + String(partidas[idRow].death) + " Death - " + String(partidas[idRow].assists) + " Assists " 
         var minionsP : Double = Double (partidas[idRow].minions) * 100 / 30000
         if minionsP > 1.0{
             minionsP = 1.0

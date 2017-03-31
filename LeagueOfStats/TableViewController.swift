@@ -12,6 +12,8 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorColor = UIColor.blue
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -55,7 +57,6 @@ class TableViewController: UITableViewController {
                 cell.champ.text = champNames[i].champName
             }
         }
-        cell.backgroundColor = UIColor.white
         return cell
     }
     override func viewDidAppear(_ animated: Bool) {
