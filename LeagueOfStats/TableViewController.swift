@@ -45,7 +45,7 @@ class TableViewController: UITableViewController {
             cell.win.text = "Win"
             cell.win.textColor = UIColor(red:0.08, green:0.71,blue:0.08,alpha:1.0)
         }else{
-            cell.win.text = "Default"
+            cell.win.text = "Defeat"
             cell.win.textColor = UIColor.red
         }
         cell.lane.text = partidas[indexPath.row].lane + " lane"
